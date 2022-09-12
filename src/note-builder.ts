@@ -112,7 +112,7 @@ export default class NoteBuilder {
         `    <script>${scripts}</script>`,
         '  </body>',
         '</html>'
-      ]
+      ];
       res.send(html.join(''));
       server.close();
     });
