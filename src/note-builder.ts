@@ -119,9 +119,13 @@ export default class NoteBuilder {
     const server = app.listen(1337,  () => {
       var scopes = ['wl.signin', 'office.onenote_create'];
       var query = toQueryString({
+        //Microsoft requires these names
+        // eslint-disable-next-line @typescript-eslint/naming-convention
         'client_id': this.clientId,
         'scope': scopes.join(' '),
+        // eslint-disable-next-line @typescript-eslint/naming-convention
         'redirect_uri': this.redirectUrl,
+        // eslint-disable-next-line @typescript-eslint/naming-convention
         'response_type': 'token'
       });
       opn(this.oAuthAuthroizeUrl + "?" + query);
