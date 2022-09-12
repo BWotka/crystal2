@@ -1,6 +1,7 @@
 # crystal README
 
-This is the README for your extension "crystal". After writing up a brief description, we recommend including the following sections.
+Crystal is an updatet fork to the VSC Extension Project STONE which aims to make workflows using VSC and Microsoft OneNote easier.
+It was created by copying the code from Project STONE into the new default files
 
 ## Features
 
@@ -29,23 +30,13 @@ This extension contributes the following settings:
 
 ## Known Issues
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+No testing was conducted yet.
 
-## Release Notes
 
-Users appreciate release notes as you update your extension.
-
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
+### 0.0.1
+Copy Project STONE sourcecode into new scaffolding
+### 0.0.2
+Updated Project STONE to TypeScript 16, using new lib versions
 
 ---
 
@@ -55,17 +46,10 @@ Ensure that you've read through the extensions guidelines and follow the best pr
 
 * [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
 
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
 
 ## For more information
 
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
+* [The original repo](https://github.com/WonSong/STONE)
+
 
 **Enjoy!**
