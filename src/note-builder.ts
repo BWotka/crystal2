@@ -1,10 +1,11 @@
-import * as opn from 'opn';
+import * as opn from 'open';
 import * as express from 'express';
 import * as path from 'path';
 import * as fs from 'fs';
 import * as MarkdownIt from 'markdown-it';
 import * as hljs from 'highlightjs';
 import { toQueryString } from './util';
+import { WorkspaceConfiguration } from 'vscode';
 
 export default class NoteBuilder {
 
@@ -12,8 +13,8 @@ export default class NoteBuilder {
   redirectUrl: string;
   oAuthAuthroizeUrl: string;
   note: string;
-  _title: string;
-  _content: Array<string>;
+  _title!: string;
+  _content!: Array<string>;
   mdEngine: any;
 
   constructor() {
@@ -22,7 +23,7 @@ export default class NoteBuilder {
     this.clientId = 'ad4f3512-b60e-47f8-96d8-5d52faeebd35';
     this.redirectUrl = 'http://localhost:1337';
     this.mdEngine = new MarkdownIt({
-      highlight: function (str, lang) {
+      highlight: function (str: any, lang: any) {
         if (lang && hljs.getLanguage(lang)) {
           try {
             return hljs.highlight(lang, str).value;
@@ -57,7 +58,7 @@ export default class NoteBuilder {
     this.note = this.note.replace('{content}', '<pre>' + tokenized + '</pre>');
   }
 
-  applyStyle(colorTheme) {
+  applyStyle(colorTheme: WorkspaceConfiguration) {
     this.note =
       this.note
         .replace(/class="hljs-meta"/g, `style="font-family: ${colorTheme.fontFamily}; font-size: ${colorTheme.fontSize}px; color: ${colorTheme.meta || colorTheme.default};"`)
@@ -91,7 +92,7 @@ export default class NoteBuilder {
 
     const note = this.note;
     const app = express();
-    app.get('/', function (req, res) {
+    app.get('/', function (req: any, res: { send: (arg0: string) => void; }) {
       const styles = fs.readFileSync(path.join(__dirname, 'client.css'));
       const scripts = fs.readFileSync(path.join(__dirname, 'client.js'));
       const html = [
@@ -115,7 +116,7 @@ export default class NoteBuilder {
       res.send(html.join(''));
       server.close();
     });
-    const server = app.listen(1337, function () {
+    const server = app.listen(1337,  () => {
       var scopes = ['wl.signin', 'office.onenote_create'];
       var query = toQueryString({
         'client_id': this.clientId,
@@ -124,8 +125,8 @@ export default class NoteBuilder {
         'response_type': 'token'
       });
       opn(this.oAuthAuthroizeUrl + "?" + query);
-    }.bind(this));
-
+    });
+    NoteBuilder.bind(server);
   }
 
 }
