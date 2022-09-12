@@ -7,17 +7,11 @@ import NoteBuilder from './note-builder';
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
-  vscode.window.showErrorMessage("Hallo Welt");
-  debugger;
-
-	
 	let noteBuilder = null;
-
 	
   context.subscriptions.push(
     vscode.commands.registerCommand('crystal.sendPageToOneNote',
       () => {
-		vscode.window.showInformationMessage("Ich war hier");
         const editor = vscode.window.activeTextEditor;
         if (!editor) {
           vscode.window.showErrorMessage("You must have a document open to send to OneNote.");
