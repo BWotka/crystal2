@@ -3,7 +3,7 @@ import * as express from 'express';
 import * as path from 'path';
 import * as fs from 'fs';
 import * as MarkdownIt from 'markdown-it';
-import * as hljs from 'highlightjs';
+import hljs from 'highlight.js';
 import { toQueryString } from './util';
 import { WorkspaceConfiguration } from 'vscode';
 
