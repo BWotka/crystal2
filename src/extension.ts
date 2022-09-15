@@ -19,13 +19,13 @@ export function activate(context: vscode.ExtensionContext) {
         }
 
         noteBuilder = new NoteBuilder();
-        noteBuilder.addTitle('Sent from Visual Studio Code: ' + editor.document.fileName.replace(/^.*[\\\/]/, ''));
+        noteBuilder.addTitle('Code from ' + editor.document.fileName.replace(/^.*[\\\/]/, ''));
         if (editor.document.languageId === 'markdown') {
           noteBuilder.addMarkDownContent(editor.document.getText());
         } else {
           noteBuilder.addCodeContent(editor.document.languageId, editor.document.getText());
         }
-        noteBuilder.applyStyle(vscode.workspace.getConfiguration('stone.theme'));
+        noteBuilder.applyStyle(vscode.workspace.getConfiguration(), editor.document.languageId, vscode.workspace.getConfiguration('crystal.theme'));
         noteBuilder.create();
 
       }
@@ -45,19 +45,19 @@ export function activate(context: vscode.ExtensionContext) {
         const selection = editor.selection;
         const selectedText = editor.document.getText(selection);
 
-        if (selectedText.length === 0) {
+        if (selection.isEmpty) {
           vscode.window.showErrorMessage("You must have text selected to send to OneNote.");
           return;
         }
 
         noteBuilder = new NoteBuilder();
-        noteBuilder.addTitle('Sent from Visual Studio Code: Part of ' + editor.document.fileName.replace(/^.*[\\\/]/, ''));
+        noteBuilder.addTitle('Part of the Code from ' + editor.document.fileName.replace(/^.*[\\\/]/, ''));
         if (editor.document.languageId === 'markdown') {
           noteBuilder.addMarkDownContent(selectedText);
         } else {
           noteBuilder.addCodeContent(editor.document.languageId, selectedText);
         }
-        noteBuilder.applyStyle(vscode.workspace.getConfiguration('stone.theme'));
+        noteBuilder.applyStyle(vscode.workspace.getConfiguration(), editor.document.languageId, vscode.workspace.getConfiguration('crystal.theme'));
         noteBuilder.create();
 
       }

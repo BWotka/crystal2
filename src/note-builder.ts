@@ -54,39 +54,50 @@ export default class NoteBuilder {
   }
 
   addCodeContent(language: string, codeContent: string) {
-    let tokenized = hljs.highlight(language, codeContent).value;
+    let tokenized = hljs.highlight(codeContent, {language}).value;
+    
     this.note = this.note.replace('{content}', '<pre>' + tokenized + '</pre>');
   }
 
-  applyStyle(colorTheme: WorkspaceConfiguration) {
+  findBestMatch(workspaceConfig: WorkspaceConfiguration, language: string, requestedVal: string, defaultValue: string):string{
+    return workspaceConfig.get(language+'.'+requestedVal)|| workspaceConfig.get(requestedVal) || defaultValue;
+  }
+
+  applyStyle(workspaceConfig: WorkspaceConfiguration, language: string, crystalConfig: WorkspaceConfiguration) {
+    let fontFamilyList= this.findBestMatch(workspaceConfig, language, 'editor.fontFamily', 'Consolas');
+    let fontFamily = fontFamilyList.split(',')[0];
+    let fontSize = this.findBestMatch(workspaceConfig,language,'editor.fontSize','14');
+    
     this.note =
       this.note
-        .replace(/class="hljs-meta"/g, `style="font-family: ${colorTheme.fontFamily}; font-size: ${colorTheme.fontSize}px; color: ${colorTheme.meta || colorTheme.default};"`)
-        .replace(/class="hljs-comment"/g, `style="font-family: ${colorTheme.fontFamily}; font-size: ${colorTheme.fontSize}px; color: ${colorTheme.comment || colorTheme.default};"`)
-        .replace(/class="hljs-string"/g, `style="font-family: ${colorTheme.fontFamily}; font-size: ${colorTheme.fontSize}px; color: ${colorTheme.string || colorTheme.default};"`)
-        .replace(/class="hljs-variable"/g, `style="font-family: ${colorTheme.fontFamily}; font-size: ${colorTheme.fontSize}px; color: ${colorTheme.variable || colorTheme.default};"`)
-        .replace(/class="hljs-template-variable"/g, `style="font-family: ${colorTheme.fontFamily}; font-size: ${colorTheme.fontSize}px; color: ${colorTheme.templateVariable || colorTheme.default};"`)
-        .replace(/class="hljs-strong"/g, `style="font-family: ${colorTheme.fontFamily}; font-size: ${colorTheme.fontSize}px; : ${colorTheme.strong || colorTheme.default};`)
-        .replace(/class="hljs-emphasis"/g, `style="font-family: ${colorTheme.fontFamily}; font-size: ${colorTheme.fontSize}px; color: ${colorTheme.emphasis || colorTheme.default};`)
-        .replace(/class="hljs-quote"/g, `style="font-family: ${colorTheme.fontFamily}; font-size: ${colorTheme.fontSize}px; color: ${colorTheme.quote || colorTheme.default};"`)
-        .replace(/class="hljs-keyword"/g, `style="font-family: ${colorTheme.fontFamily}; font-size: ${colorTheme.fontSize}px; color: ${colorTheme.keyword || colorTheme.default};"`)
-        .replace(/class="hljs-selector-tag"/g, `style="font-family: ${colorTheme.fontFamily}; font-size: ${colorTheme.fontSize}px; color: ${colorTheme.selectorTag || colorTheme.default};"`)
-        .replace(/class="hljs-type"/g, `style="font-family: ${colorTheme.fontFamily}; font-size: ${colorTheme.fontSize}px; color: ${colorTheme.type || colorTheme.default};"`)
-        .replace(/class="hljs-literal"/g, `style="font-family: ${colorTheme.fontFamily}; font-size: ${colorTheme.fontSize}px; color: ${colorTheme.literal || colorTheme.default};"`)
-        .replace(/class="hljs-symbol"/g, `style="font-family: ${colorTheme.fontFamily}; font-size: ${colorTheme.fontSize}px; color: ${colorTheme.symbol || colorTheme.default};"`)
-        .replace(/class="hljs-bullet"/g, `style="font-family: ${colorTheme.fontFamily}; font-size: ${colorTheme.fontSize}px; color: ${colorTheme.bullet || colorTheme.default};"`)
-        .replace(/class="hljs-attribute"/g, `style="font-family: ${colorTheme.fontFamily}; font-size: ${colorTheme.fontSize}px; color: ${colorTheme.attribute || colorTheme.default};"`)
-        .replace(/class="hljs-section"/g, `style="font-family: ${colorTheme.fontFamily}; font-size: ${colorTheme.fontSize}px; color: ${colorTheme.section || colorTheme.default};"`)
-        .replace(/class="hljs-name"/g, `style="font-family: ${colorTheme.fontFamily}; font-size: ${colorTheme.fontSize}px; color: ${colorTheme.name || colorTheme.default};"`)
-        .replace(/class="hljs-tag"/g, `style="font-family: ${colorTheme.fontFamily}; font-size: ${colorTheme.fontSize}px; color: ${colorTheme.tag || colorTheme.default};"`)
-        .replace(/class="hljs-title"/g, `style="font-family: ${colorTheme.fontFamily}; font-size: ${colorTheme.fontSize}px; color: ${colorTheme.title || colorTheme.default};"`)
-        .replace(/class="hljs-attr"/g, `style="font-family: ${colorTheme.fontFamily}; font-size: ${colorTheme.fontSize}px; color: ${colorTheme.attr || colorTheme.default};"`)
-        .replace(/class="hljs-selector-id"/g, `style="font-family: ${colorTheme.fontFamily}; font-size: ${colorTheme.fontSize}px; color: ${colorTheme.selectorId || colorTheme.default};"`)
-        .replace(/class="hljs-selector-class"/g, `style="font-family: ${colorTheme.fontFamily}; font-size: ${colorTheme.fontSize}px; color: ${colorTheme.selectorClass || colorTheme.default};"`)
-        .replace(/class="hljs-selector-attr"/g, `style="font-family: ${colorTheme.fontFamily}; font-size: ${colorTheme.fontSize}px; color: ${colorTheme.selectorAttr || colorTheme.default};"`)
-        .replace(/class="hljs-selector-pseudo"/g, `style="font-family: ${colorTheme.fontFamily}; font-size: ${colorTheme.fontSize}px; color: ${colorTheme.selectorPseudo || colorTheme.default};"`)
-        .replace(/class="hljs-.*?"/g, `style="font-family: ${colorTheme.fontFamily}; font-size: ${colorTheme.fontSize}px; color: ${colorTheme.default};"`);
-  }
+        .replace(/class="hljs-meta"/g, `style="font-family: ${fontFamily}; font-size: ${fontSize}px; color: ${crystalConfig.meta || crystalConfig.default};"`)
+        .replace(/class="hljs-comment"/g, `style="font-family: ${fontFamily}; font-size: ${fontSize}px; color: ${crystalConfig.comment || crystalConfig.default};"`)
+        .replace(/class="hljs-string"/g, `style="font-family: ${fontFamily}; font-size: ${fontSize}px; color: ${crystalConfig.string || crystalConfig.default};"`)
+        .replace(/class="hljs-variable"/g, `style="font-family: ${fontFamily}; font-size: ${fontSize}px; color: ${crystalConfig.variable || crystalConfig.default};"`)
+        .replace(/class="hljs-template-variable"/g, `style="font-family: ${fontFamily}; font-size: ${fontSize}px; color: ${crystalConfig.templateVariable || crystalConfig.default};"`)
+        .replace(/class="hljs-strong"/g, `style="font-family: ${fontFamily}; font-size: ${fontSize}px; : ${crystalConfig.strong || crystalConfig.default};`)
+        .replace(/class="hljs-emphasis"/g, `style="font-family: ${fontFamily}; font-size: ${fontSize}px; color: ${crystalConfig.emphasis || crystalConfig.default};`)
+        .replace(/class="hljs-quote"/g, `style="font-family: ${fontFamily}; font-size: ${fontSize}px; color: ${crystalConfig.quote || crystalConfig.default};"`)
+        .replace(/class="hljs-keyword"/g, `style="font-family: ${fontFamily}; font-size: ${fontSize}px; color: ${crystalConfig.keyword || crystalConfig.default};"`)
+        .replace(/class="hljs-selector-tag"/g, `style="font-family: ${fontFamily}; font-size: ${fontSize}px; color: ${crystalConfig.selectorTag || crystalConfig.default};"`)
+        .replace(/class="hljs-type"/g, `style="font-family: ${fontFamily}; font-size: ${fontSize}px; color: ${crystalConfig.type || crystalConfig.default};"`)
+        .replace(/class="hljs-literal"/g, `style="font-family: ${fontFamily}; font-size: ${fontSize}px; color: ${crystalConfig.literal || crystalConfig.default};"`)
+        .replace(/class="hljs-symbol"/g, `style="font-family: ${fontFamily}; font-size: ${fontSize}px; color: ${crystalConfig.symbol || crystalConfig.default};"`)
+        .replace(/class="hljs-bullet"/g, `style="font-family: ${fontFamily}; font-size: ${fontSize}px; color: ${crystalConfig.bullet || crystalConfig.default};"`)
+        .replace(/class="hljs-attribute"/g, `style="font-family: ${fontFamily}; font-size: ${fontSize}px; color: ${crystalConfig.attribute || crystalConfig.default};"`)
+        .replace(/class="hljs-section"/g, `style="font-family: ${fontFamily}; font-size: ${fontSize}px; color: ${crystalConfig.section || crystalConfig.default};"`)
+        .replace(/class="hljs-name"/g, `style="font-family: ${fontFamily}; font-size: ${fontSize}px; color: ${crystalConfig.name || crystalConfig.default};"`)
+        .replace(/class="hljs-tag"/g, `style="font-family: ${fontFamily}; font-size: ${fontSize}px; color: ${crystalConfig.tag || crystalConfig.default};"`)
+        .replace(/class="hljs-title"/g, `style="font-family: ${fontFamily}; font-size: ${fontSize}px; color: ${crystalConfig.title || crystalConfig.default};"`)
+        .replace(/class="hljs-attr"/g, `style="font-family: ${fontFamily}; font-size: ${fontSize}px; color: ${crystalConfig.attr || crystalConfig.default};"`)
+        .replace(/class="hljs-selector-id"/g, `style="font-family: ${fontFamily}; font-size: ${fontSize}px; color: ${crystalConfig.selectorId || crystalConfig.default};"`)
+        .replace(/class="hljs-selector-class"/g, `style="font-family: ${fontFamily}; font-size: ${fontSize}px; color: ${crystalConfig.selectorClass || crystalConfig.default};"`)
+        .replace(/class="hljs-selector-attr"/g, `style="font-family: ${fontFamily}; font-size: ${fontSize}px; color: ${crystalConfig.selectorAttr || crystalConfig.default};"`)
+        .replace(/class="hljs-selector-pseudo"/g, `style="font-family: ${fontFamily}; font-size: ${fontSize}px; color: ${crystalConfig.selectorPseudo || crystalConfig.default};"`)
+        .replace(/class="hljs-.*?"/g, `style="font-family: ${fontFamily}; font-size: ${fontSize}px; color: ${crystalConfig.default};"`);
+        console.log(this.note);
+        
+      }
 
   create() {
 
