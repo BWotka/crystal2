@@ -95,7 +95,9 @@ export default class NoteBuilder {
         .replace(/class="hljs-selector-class"/g, `style="font-family: ${fontFamily}; font-size: ${fontSize}px; color: ${crystalConfig.selectorClass || defaultColor};"`)
         .replace(/class="hljs-selector-attr"/g, `style="font-family: ${fontFamily}; font-size: ${fontSize}px; color: ${crystalConfig.selectorAttr || defaultColor};"`)
         .replace(/class="hljs-selector-pseudo"/g, `style="font-family: ${fontFamily}; font-size: ${fontSize}px; color: ${crystalConfig.selectorPseudo || defaultColor};"`)
-        .replace(/class="hljs-.*?"/g, `style="font-family: ${fontFamily}; font-size: ${fontSize}px; color: ${defaultColor};"`);
+        .replace(/class="hljs-.*?"/g, `style="font-family: ${fontFamily}; font-size: ${fontSize}px; color: ${defaultColor};"`)
+        .replace("<pre>", `<pre> <span style="font-family: ${fontFamily}; font-size: ${fontSize}px; color: ${defaultColor};">`)
+        .replace("</pre>", "</span></pre>");
       }
 
   create() {
