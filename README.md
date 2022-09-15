@@ -20,7 +20,6 @@ When first sending something to OneNote you will have to sign in to OneNote and 
 
 ## Extension Settings
 
-This extension contributes the following settings:
 It's not yet possible to get the colors actually used.
 See https://github.com/microsoft/vscode/issues/32813
 
