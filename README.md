@@ -1,50 +1,41 @@
 # crystal README
 
-Crystal is an updatet fork to the VSC Extension Project STONE which aims to make workflows using VSC and Microsoft OneNote easier.
-It was created by copying the code from Project STONE into the new default files
+Crystal is an updatet fork to the VSC Extension Project STONE by Won Song which aims to make workflows using VSC and Microsoft OneNote easier.
+It was created by copying the code from Project STONE into the new default files and updating all the used libs.
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+Send whole documents or just your selection to OneNote in your browser via crystal.sendPageToOneNote / crystal.sendSelectionToOneNote .
 
-For example if there is an image subfolder under your extension project workspace:
+This can then be copied via the clipboard or opened in the desktop app for further editing/ use.
 
-\!\[feature X\]\(images/feature-x.png\)
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+![Example: ](images/Example.png)
+
+Note: Formatting depends on the highlight.js formatting for the language hence function calls might not be highlighted.
 
 ## Requirements
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+When first sending something to OneNote you will have to sign in to OneNote and allow the access for the plugin.
 
 ## Extension Settings
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
 This extension contributes the following settings:
+It's not yet possible to get the colors actually used.
+See https://github.com/microsoft/vscode/issues/32813
 
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+This is why the colors are set in the package.json and available via e.g. crystal.string for the color of strings.
+
+Fontsize and Style are pulled from the vscode settings.
 
 ## Known Issues
 
-No testing was conducted yet.
-
+No extensive testing was conducted yet.
 
 ### 0.0.1
 Copy Project STONE sourcecode into new scaffolding
 ### 0.0.2
-Updated Project STONE to TypeScript 16, using new lib versions
-
----
-
-## Following extension guidelines
-
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
+Updated Project STONE to TypeScript 16, using new lib versions.
 
 
 ## For more information
