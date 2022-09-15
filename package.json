@@ -24,7 +24,129 @@
         "title": "Send Selection to OneNote"
       }
     ]
-  },
+  ,
+  "configuration": {
+    "type": "object",
+    "title": "Crystal Color Theme Configuration",
+    "properties": {
+        "crystal.theme.default": {
+            "type": "string",
+            "default": "#333",
+            "description": "HEX Code for default colors"
+        },
+        "crystal.theme.comment": {
+            "type": "string",
+            "default": "#969896",
+            "description": "HEX Code for comments"
+        },
+        "crystal.theme.quote": {
+            "type": "string",
+            "default": "#df5000",
+            "description": "HEX Code for quotes"
+        },
+        "crystal.theme.variable": {
+            "type": "string",
+            "default": "#df5000",
+            "description": "HEX Code for variables"
+        },
+        "crystal.theme.keyword": {
+            "type": "string",
+            "default": "#a71d5d",
+            "description": "HEX Code for keywords"
+        },
+        "crystal.theme.selectorTag": {
+            "type": "string",
+            "default": "#a71d5d",
+            "description": "HEX Code for selector tags"
+        },
+        "crystal.theme.builtIn": {
+            "type": "string",
+            "default": "#00f",
+            "description": "HEX Code for built ins"
+        },
+        "crystal.theme.name": {
+            "type": "string",
+            "default": "#63a35c",
+            "description": "HEX Code for names"
+        },
+        "crystal.theme.tag": {
+            "type": "string",
+            "default": "#333333",
+            "description": "HEX Code for tags"
+        },
+        "crystal.theme.string": {
+            "type": "string",
+            "default": "#df5000",
+            "description": "HEX Code for strings"
+        },
+        "crystal.theme.title": {
+            "type": "string",
+            "default": "#795da3",
+            "description": "HEX Code for titles"
+        },
+        "crystal.theme.section": {
+            "type": "string",
+            "default": "#63a35c",
+            "description": "HEX Code for sections"
+        },
+        "crystal.theme.attribute": {
+            "type": "string",
+            "default": "#0086b3",
+            "description": "HEX Code for attributes"
+        },
+        "crystal.theme.literal": {
+            "type": "string",
+            "default": "#0086b3",
+            "description": "HEX Code for literals"
+        },
+        "crystal.theme.templateTag": {
+            "type": "string",
+            "default": "#a31515",
+            "description": "HEX Code for template tags"
+        },
+        "crystal.theme.templateVariables": {
+            "type": "string",
+            "default": "#333",
+            "description": "HEX Code for template variables"
+        },
+        "crystal.theme.type": {
+            "type": "string",
+            "default": "#a71d5d",
+            "description": "HEX Code for types"
+        },
+        "crystal.theme.meta": {
+            "type": "string",
+            "default": "#969896",
+            "description": "HEX Code for meta"
+        },
+        "crystal.theme.docTag": {
+            "type": "string",
+            "default": "#333333",
+            "description": "HEX Code for doc tags"
+        },
+        "crystal.theme.attr": {
+            "type": "string",
+            "default": "#795da3",
+            "description": "HEX Code for attrs"
+        },
+        "crystal.theme.symbol": {
+            "type": "string",
+            "default": "#0086b3",
+            "description": "HEX Code for symbols"
+        },
+        "crystal.theme.bullet": {
+            "type": "string",
+            "default": "#0086b3",
+            "description": "HEX Code for bullets"
+        },
+        "crystal.theme.links": {
+            "type": "string",
+            "default": "#00b0e8",
+            "description": "HEX Code for links"
+        }
+    }
+   }
+ },
   "scripts": {
     "vscode:prepublish": "npm run package",
     "compile": "webpack && copy-files",
