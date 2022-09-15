@@ -67,36 +67,35 @@ export default class NoteBuilder {
     let fontFamilyList= this.findBestMatch(workspaceConfig, language, 'editor.fontFamily', 'Consolas');
     let fontFamily = fontFamilyList.split(',')[0];
     let fontSize = this.findBestMatch(workspaceConfig,language,'editor.fontSize','14');
+    let defaultColor = crystalConfig.default;
     
     this.note =
       this.note
-        .replace(/class="hljs-meta"/g, `style="font-family: ${fontFamily}; font-size: ${fontSize}px; color: ${crystalConfig.meta || crystalConfig.default};"`)
-        .replace(/class="hljs-comment"/g, `style="font-family: ${fontFamily}; font-size: ${fontSize}px; color: ${crystalConfig.comment || crystalConfig.default};"`)
-        .replace(/class="hljs-string"/g, `style="font-family: ${fontFamily}; font-size: ${fontSize}px; color: ${crystalConfig.string || crystalConfig.default};"`)
-        .replace(/class="hljs-variable"/g, `style="font-family: ${fontFamily}; font-size: ${fontSize}px; color: ${crystalConfig.variable || crystalConfig.default};"`)
-        .replace(/class="hljs-template-variable"/g, `style="font-family: ${fontFamily}; font-size: ${fontSize}px; color: ${crystalConfig.templateVariable || crystalConfig.default};"`)
-        .replace(/class="hljs-strong"/g, `style="font-family: ${fontFamily}; font-size: ${fontSize}px; : ${crystalConfig.strong || crystalConfig.default};`)
-        .replace(/class="hljs-emphasis"/g, `style="font-family: ${fontFamily}; font-size: ${fontSize}px; color: ${crystalConfig.emphasis || crystalConfig.default};`)
-        .replace(/class="hljs-quote"/g, `style="font-family: ${fontFamily}; font-size: ${fontSize}px; color: ${crystalConfig.quote || crystalConfig.default};"`)
-        .replace(/class="hljs-keyword"/g, `style="font-family: ${fontFamily}; font-size: ${fontSize}px; color: ${crystalConfig.keyword || crystalConfig.default};"`)
-        .replace(/class="hljs-selector-tag"/g, `style="font-family: ${fontFamily}; font-size: ${fontSize}px; color: ${crystalConfig.selectorTag || crystalConfig.default};"`)
-        .replace(/class="hljs-type"/g, `style="font-family: ${fontFamily}; font-size: ${fontSize}px; color: ${crystalConfig.type || crystalConfig.default};"`)
-        .replace(/class="hljs-literal"/g, `style="font-family: ${fontFamily}; font-size: ${fontSize}px; color: ${crystalConfig.literal || crystalConfig.default};"`)
-        .replace(/class="hljs-symbol"/g, `style="font-family: ${fontFamily}; font-size: ${fontSize}px; color: ${crystalConfig.symbol || crystalConfig.default};"`)
-        .replace(/class="hljs-bullet"/g, `style="font-family: ${fontFamily}; font-size: ${fontSize}px; color: ${crystalConfig.bullet || crystalConfig.default};"`)
-        .replace(/class="hljs-attribute"/g, `style="font-family: ${fontFamily}; font-size: ${fontSize}px; color: ${crystalConfig.attribute || crystalConfig.default};"`)
-        .replace(/class="hljs-section"/g, `style="font-family: ${fontFamily}; font-size: ${fontSize}px; color: ${crystalConfig.section || crystalConfig.default};"`)
-        .replace(/class="hljs-name"/g, `style="font-family: ${fontFamily}; font-size: ${fontSize}px; color: ${crystalConfig.name || crystalConfig.default};"`)
-        .replace(/class="hljs-tag"/g, `style="font-family: ${fontFamily}; font-size: ${fontSize}px; color: ${crystalConfig.tag || crystalConfig.default};"`)
-        .replace(/class="hljs-title"/g, `style="font-family: ${fontFamily}; font-size: ${fontSize}px; color: ${crystalConfig.title || crystalConfig.default};"`)
-        .replace(/class="hljs-attr"/g, `style="font-family: ${fontFamily}; font-size: ${fontSize}px; color: ${crystalConfig.attr || crystalConfig.default};"`)
-        .replace(/class="hljs-selector-id"/g, `style="font-family: ${fontFamily}; font-size: ${fontSize}px; color: ${crystalConfig.selectorId || crystalConfig.default};"`)
-        .replace(/class="hljs-selector-class"/g, `style="font-family: ${fontFamily}; font-size: ${fontSize}px; color: ${crystalConfig.selectorClass || crystalConfig.default};"`)
-        .replace(/class="hljs-selector-attr"/g, `style="font-family: ${fontFamily}; font-size: ${fontSize}px; color: ${crystalConfig.selectorAttr || crystalConfig.default};"`)
-        .replace(/class="hljs-selector-pseudo"/g, `style="font-family: ${fontFamily}; font-size: ${fontSize}px; color: ${crystalConfig.selectorPseudo || crystalConfig.default};"`)
-        .replace(/class="hljs-.*?"/g, `style="font-family: ${fontFamily}; font-size: ${fontSize}px; color: ${crystalConfig.default};"`);
-        console.log(this.note);
-        
+        .replace(/class="hljs-meta"/g, `style="font-family: ${fontFamily}; font-size: ${fontSize}px; color: ${crystalConfig.meta || defaultColor};"`)
+        .replace(/class="hljs-comment"/g, `style="font-family: ${fontFamily}; font-size: ${fontSize}px; color: ${crystalConfig.comment || defaultColor};"`)
+        .replace(/class="hljs-string"/g, `style="font-family: ${fontFamily}; font-size: ${fontSize}px; color: ${crystalConfig.string || defaultColor};"`)
+        .replace(/class="hljs-variable"/g, `style="font-family: ${fontFamily}; font-size: ${fontSize}px; color: ${crystalConfig.variable || defaultColor};"`)
+        .replace(/class="hljs-template-variable"/g, `style="font-family: ${fontFamily}; font-size: ${fontSize}px; color: ${crystalConfig.templateVariable || defaultColor};"`)
+        .replace(/class="hljs-strong"/g, `style="font-family: ${fontFamily}; font-size: ${fontSize}px; : ${crystalConfig.strong || defaultColor};`)
+        .replace(/class="hljs-emphasis"/g, `style="font-family: ${fontFamily}; font-size: ${fontSize}px; color: ${crystalConfig.emphasis || defaultColor};`)
+        .replace(/class="hljs-quote"/g, `style="font-family: ${fontFamily}; font-size: ${fontSize}px; color: ${crystalConfig.quote || defaultColor};"`)
+        .replace(/class="hljs-keyword"/g, `style="font-family: ${fontFamily}; font-size: ${fontSize}px; color: ${crystalConfig.keyword || defaultColor};"`)
+        .replace(/class="hljs-selector-tag"/g, `style="font-family: ${fontFamily}; font-size: ${fontSize}px; color: ${crystalConfig.selectorTag || defaultColor};"`)
+        .replace(/class="hljs-type"/g, `style="font-family: ${fontFamily}; font-size: ${fontSize}px; color: ${crystalConfig.type || defaultColor};"`)
+        .replace(/class="hljs-literal"/g, `style="font-family: ${fontFamily}; font-size: ${fontSize}px; color: ${crystalConfig.literal || defaultColor};"`)
+        .replace(/class="hljs-symbol"/g, `style="font-family: ${fontFamily}; font-size: ${fontSize}px; color: ${crystalConfig.symbol || defaultColor};"`)
+        .replace(/class="hljs-bullet"/g, `style="font-family: ${fontFamily}; font-size: ${fontSize}px; color: ${crystalConfig.bullet || defaultColor};"`)
+        .replace(/class="hljs-attribute"/g, `style="font-family: ${fontFamily}; font-size: ${fontSize}px; color: ${crystalConfig.attribute || defaultColor};"`)
+        .replace(/class="hljs-section"/g, `style="font-family: ${fontFamily}; font-size: ${fontSize}px; color: ${crystalConfig.section || defaultColor};"`)
+        .replace(/class="hljs-name"/g, `style="font-family: ${fontFamily}; font-size: ${fontSize}px; color: ${crystalConfig.name || defaultColor};"`)
+        .replace(/class="hljs-tag"/g, `style="font-family: ${fontFamily}; font-size: ${fontSize}px; color: ${crystalConfig.tag || defaultColor};"`)
+        .replace(/class="hljs-title"/g, `style="font-family: ${fontFamily}; font-size: ${fontSize}px; color: ${crystalConfig.title || defaultColor};"`)
+        .replace(/class="hljs-attr"/g, `style="font-family: ${fontFamily}; font-size: ${fontSize}px; color: ${crystalConfig.attr || defaultColor};"`)
+        .replace(/class="hljs-selector-id"/g, `style="font-family: ${fontFamily}; font-size: ${fontSize}px; color: ${crystalConfig.selectorId || defaultColor};"`)
+        .replace(/class="hljs-selector-class"/g, `style="font-family: ${fontFamily}; font-size: ${fontSize}px; color: ${crystalConfig.selectorClass || defaultColor};"`)
+        .replace(/class="hljs-selector-attr"/g, `style="font-family: ${fontFamily}; font-size: ${fontSize}px; color: ${crystalConfig.selectorAttr || defaultColor};"`)
+        .replace(/class="hljs-selector-pseudo"/g, `style="font-family: ${fontFamily}; font-size: ${fontSize}px; color: ${crystalConfig.selectorPseudo || defaultColor};"`)
+        .replace(/class="hljs-.*?"/g, `style="font-family: ${fontFamily}; font-size: ${fontSize}px; color: ${defaultColor};"`);
       }
 
   create() {
@@ -113,7 +112,7 @@ export default class NoteBuilder {
         '  </head>',
         '  <body>',
         '    <div class="header">',
-        '      <div class="brand">Project S.T.O.N.E</div>',
+        '      <div class="brand">Project Crystal</div>',
         '      <ul class="menus">',
         '        <li><a id="app-link">Open in App</a></li>',
         '      </ul>',
