@@ -10,7 +10,7 @@ Send whole documents or just your selection to OneNote in your browser via cryst
 This can then be copied via the clipboard or opened in the desktop app for further editing/ use.
 
 
-![Example: ](images/Example.png)
+![Example: ](https://github.com/BWotka/crystal2/blob/main/images/Example.png?raw=true)
 
 Note: Formatting depends on the highlight.js formatting for the language hence function calls might not be highlighted.
 
